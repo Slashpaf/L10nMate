@@ -1,0 +1,2 @@
+python translation_script.py
+pause
