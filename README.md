@@ -6,9 +6,6 @@ L10nMate is an advanced application that leverages OpenAI's ChatGPT models to au
 
 ## Features
 
-- **Automatic Source Language Detection**  
-  Detects the source language from the filename (e.g., `file_en.txt`).
-
 - **Multiple Target Translations**  
   Translates files into each specified target language and renames the files appropriately (e.g., `file_fr.txt`, `file_de.txt` for French and German translations).
 
