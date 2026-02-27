@@ -132,10 +132,17 @@ def translate_and_save(src_path, source_language, target_language):
             target_content = json.loads(target_content_raw)
             print(f"Existing target content keys: {list(target_content.keys())}")
 
-            # Only translate keys that are missing or untranslated in the target file
+            # Only translate keys that are missing or untranslated in the target file.
+            # Skip non-string values (e.g. ARB @metadata dicts) — copy them directly.
+            for key, value in source_content.items():
+                if not isinstance(value, str) and key not in target_content:
+                    target_content[key] = value
+
             keys_to_translate = {
                 key: value for key, value in source_content.items()
-                if key not in target_content or not target_content[key].strip()
+                if isinstance(value, str)
+                and (key not in target_content
+                     or not (isinstance(target_content[key], str) and target_content[key].strip()))
             }
 
             print(f"Keys to translate: {list(keys_to_translate.keys())}")
